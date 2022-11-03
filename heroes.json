@@ -2,20 +2,20 @@
     "heroes": [
         {
             "id": 1,
-            "name": "Первый герой",
-            "description": "Первый герой в рейтинге!",
+            "name": "First hero",
+            "description": "First in a rating!",
             "element": "fire"
         },
         {
             "id": 2,
-            "name": "Неизвестный герой",
-            "description": "Скрывающийся в тени",
+            "name": "Unkown hero",
+            "description": "Hidden in the dark",
             "element": "wind"
         },
         {
             "id": 3,
-            "name": "Морской герой",
-            "description": "Как аквамен, но не из DC",
+            "name": "Aqua hero",
+            "description": "Like Aquaman, but nor from DC",
             "element": "water"
         }
     ],
