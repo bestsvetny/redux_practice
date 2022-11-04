@@ -1,13 +1,21 @@
 import {useDispatch} from "react-redux";
 
 import {heroesDeleteItem} from "../../actions";
-
+import {useHttp} from "../../hooks/http.hook";
 
 const HeroesListItem = ({id, name, description, element}) => {
-
     const dispatch = useDispatch()
+    const {request} = useHttp();
 
     let elementClassName;
+
+    const onDelete = (id) => {
+        dispatch(heroesDeleteItem(id))
+
+        request(`http://localhost:3001/heroes/${id}`, 'DELETE')
+            .then(res => {console.log(res)})
+            .catch(e => console.log(e))
+    }
 
     switch (element) {
         case 'fire':
@@ -43,7 +51,7 @@ const HeroesListItem = ({id, name, description, element}) => {
                     type="button"
                     className="btn-close btn-close"
                     aria-label="Close"
-                    onClick={() => dispatch(heroesDeleteItem(id))}>
+                    onClick={() => onDelete(id)}>
 
                 </button>
             </span>

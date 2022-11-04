@@ -1,54 +1,49 @@
 {
-    "heroes": [
-        {
-            "id": 1,
-            "name": "First hero",
-            "description": "First in a rating!",
-            "element": "fire"
-        },
-        {
-            "id": 2,
-            "name": "Unknown hero",
-            "description": "Hidden in the dark",
-            "element": "wind"
-        },
-        {
-            "id": 3,
-            "name": "Aqua hero",
-            "description": "Like Aquaman, but nor from DC",
-            "element": "water"
-        }
-    ],
-    "filters": [
-        {
-            "id": 1,
-            "name": "all",
-            "className": "btn-outline-dark"
-
-        },
-        {
-            "id": 2,
-            "name": "fire",
-            "className": "btn-danger"
-
-        },
-        {
-            "id": 3,
-            "name": "water",
-            "className": "btn-primary"
-
-        },
-        {
-            "id": 4,
-            "name": "wind",
-            "className": "btn-success"
-
-        },
-        {
-            "id": 5,
-            "name": "earth",
-            "className": "btn-secondary"
-
-        }
-    ]
+  "heroes": [
+    {
+      "id": "cdaf9c34-a3c0-412d-a6dc-1a7cb37569a8",
+      "name": "First hero",
+      "description": "First in a rating!",
+      "element": "fire"
+    },
+    {
+      "id": "e05ee019-9958-4c7b-a7a0-e621b100cce4",
+      "name": "Unknown hero",
+      "description": "Hidden in the dark",
+      "element": "wind"
+    },
+    {
+      "id": "ae01d0bd-8a0a-4375-a28a-27719bcc5844",
+      "name": "Aqua hero",
+      "description": "Like Aquaman, but nor from DC",
+      "element": "water"
+    }
+  ],
+  "filters": [
+    {
+      "id": 1,
+      "name": "all",
+      "className": "btn-outline-dark"
+    },
+    {
+      "id": 2,
+      "name": "fire",
+      "className": "btn-danger"
+    },
+    {
+      "id": 3,
+      "name": "water",
+      "className": "btn-primary"
+    },
+    {
+      "id": 4,
+      "name": "wind",
+      "className": "btn-success"
+    },
+    {
+      "id": 5,
+      "name": "earth",
+      "className": "btn-secondary"
+    }
+  ]
 }

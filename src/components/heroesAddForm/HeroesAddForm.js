@@ -15,6 +15,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {v4 as uuidv4} from "uuid";
 
 import {heroesAddItem} from "../../actions";
+import {useHttp} from "../../hooks/http.hook";
 
 const initialHeroState = {
     id: uuidv4(),
@@ -26,6 +27,7 @@ const initialHeroState = {
 const HeroesAddForm = () => {
     const dispatch = useDispatch()
     const {filters} = useSelector(state => state)
+    const {request} = useHttp()
 
     const [hero, setHero] = useState(initialHeroState)
 
@@ -40,6 +42,10 @@ const HeroesAddForm = () => {
     const onSubmit = async (event) => {
         event.preventDefault()
         dispatch(heroesAddItem(hero))
+        request(`http://localhost:3001/heroes`, 'POST', JSON.stringify(hero))
+            .then(res => {console.log(res)})
+            .catch(e => console.log(e))
+
         setHero({
             ...initialHeroState,
             id: uuidv4()
