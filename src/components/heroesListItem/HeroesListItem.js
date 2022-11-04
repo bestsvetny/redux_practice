@@ -2,6 +2,7 @@ import {useDispatch} from "react-redux";
 
 import {heroesDeleteItem} from "../../actions";
 import {useHttp} from "../../hooks/http.hook";
+import './heroesListItem.scss'
 
 const HeroesListItem = ({id, name, description, element}) => {
     const dispatch = useDispatch()
@@ -35,14 +36,14 @@ const HeroesListItem = ({id, name, description, element}) => {
     }
 
     return (
-        <li 
+        <li
             className={`card flex-row mb-4 shadow-lg text-white ${elementClassName}`}>
-            <img src="http://www.stpaulsteinbach.org/wp-content/uploads/2014/09/unknown-hero.jpg" 
-                 className="img-fluid w-25 d-inline" 
-                 alt="unknown hero" 
+            <img src="http://www.stpaulsteinbach.org/wp-content/uploads/2014/09/unknown-hero.jpg"
+                 className="img-fluid w-25 d-inline"
+                 alt="unknown hero"
                  style={{'objectFit': 'cover'}}/>
             <div className="card-body">
-                
+
                 <h3 className="card-title">{name}</h3>
                 <p className="card-text">{description}</p>
             </div>
