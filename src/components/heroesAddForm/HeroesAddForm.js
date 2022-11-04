@@ -2,20 +2,20 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {v4 as uuidv4} from "uuid";
 
-import {heroesAddItem} from "../../actions";
+import {heroCreated} from "../../actions";
 import {useHttp} from "../../hooks/http.hook";
-
-const initialHeroState = {
-    id: uuidv4(),
-    name: '',
-    description: '',
-    element: ''
-}
 
 const HeroesAddForm = () => {
     const dispatch = useDispatch()
     const {filters} = useSelector(state => state)
     const {request} = useHttp()
+
+    const initialHeroState = {
+        id: '',
+        name: '',
+        description: '',
+        element: ''
+    }
 
     const [hero, setHero] = useState(initialHeroState)
 
@@ -27,17 +27,21 @@ const HeroesAddForm = () => {
         })
     }
 
-    const onSubmit = async (event) => {
+    const onSubmitHandler = async (event) => {
         event.preventDefault()
-        dispatch(heroesAddItem(hero))
+
+        const newHero = {
+            ...hero,
+            id: uuidv4()
+        }
+
         request(`http://localhost:3001/heroes`, 'POST', JSON.stringify(hero))
-            .then(res => {console.log(res)})
+            .then(res => {console.log(res, 'success')})
+            .then(dispatch(heroCreated(newHero)))
             .catch(e => console.log(e))
 
-        setHero({
-            ...initialHeroState,
-            id: uuidv4()
-        })
+
+        setHero(initialHeroState)
     }
 
     const renderOptions = (arr) => {
@@ -53,7 +57,7 @@ const HeroesAddForm = () => {
     return (
         <form
             className="border p-4 shadow-lg rounded"
-            onSubmit={onSubmit}>
+            onSubmit={onSubmitHandler}>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label fs-4">New hero name</label>
                 <input 

@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import {useHttp} from "../../hooks/http.hook";
 import {useSelector, useDispatch} from "react-redux";
 
-import {filterFetching, filterFetched, filterFetchingError, filterChange} from "../../actions";
+import {filterFetching, filterFetched, filterFetchingError, activeFilterChanged} from "../../actions";
 const cn = require('classnames');
 
 const HeroesFilters = () => {
@@ -22,12 +22,14 @@ const HeroesFilters = () => {
     const renderFilters = (arr) => {
         return arr.map((item) => {
 
-            const classNames = cn('btn', item.className, {'active': item.name === filter} )
+            const btnClass = cn('btn', item.className, {'active': item.name === filter} )
 
             return <button
                 key={item.id}
-                className={classNames}
-                onClick={() => dispatch(filterChange(item.name))}>{item.name}</button>
+                label={item.label}
+                className={btnClass}
+                onClick={() => dispatch(activeFilterChanged(item.name))}
+                >{item.name}</button>
         })
     }
 

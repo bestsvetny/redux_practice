@@ -1,9 +1,9 @@
 import {useHttp} from '../../hooks/http.hook';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 
-import { heroesFetching, heroesFetched, heroesFetchingError } from '../../actions';
+import {heroesFetching, heroesFetched, heroesFetchingError, heroDeleted} from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
@@ -20,6 +20,14 @@ const HeroesList = () => {
 
         // eslint-disable-next-line
     }, []);
+
+    const onDelete = useCallback((id) => {
+        request(`http://localhost:3001/heroes/${id}`, "DELETE")
+            .then(data => console.log(data, 'Deleted'))
+            .then(dispatch(heroDeleted(id)))
+            .catch(err => console.log(err));
+        // eslint-disable-next-line
+    }, [request]);
 
     if (heroesLoadingStatus === "loading") {
         return <Spinner/>;
@@ -50,7 +58,7 @@ const HeroesList = () => {
                             timeout={300}
                             classNames={'card'}
                         >
-                            <HeroesListItem {...props} id={id}/>
+                            <HeroesListItem {...props} id={id} onDelete={() => onDelete(id)}/>
                         </CSSTransition>
                     )
                 })}

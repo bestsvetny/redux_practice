@@ -24,16 +24,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 heroesLoadingStatus: 'error'
             }
-        case 'HEROES_DELETE_ITEM':
-            return {
-                ...state,
-                heroes: state.heroes.filter(hero => hero.id !== action.payload)
-            }
-        case 'HEROES_ADD_ITEM':
-            return {
-                ...state,
-                heroes: [...state.heroes, action.payload]
-            }
         case 'FILTER_FETCHING':
             return {
                 ...state,
@@ -50,12 +40,21 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 filterLoadingStatus: 'error'
             }
-        case 'FILTER_CHANGE':
+        case 'ACTIVE_FILTER_CHANGED':
             return {
                 ...state,
                 filter: action.payload,
             }
-
+        case 'HERO_DELETED':
+            return {
+                ...state,
+                heroes: state.heroes.filter(hero => hero.id !== action.payload)
+            }
+        case 'HERO_CREATED':
+            return {
+                ...state,
+                heroes: [...state.heroes, action.payload]
+            }
         default: return state
     }
 }

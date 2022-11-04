@@ -7,16 +7,22 @@
       "element": "fire"
     },
     {
-      "id": "e05ee019-9958-4c7b-a7a0-e621b100cce4",
-      "name": "Unknown hero",
-      "description": "Hidden in the dark",
+      "id": "7de6d4bb-7034-4111-a265-65c8e87cacd5",
+      "name": "asd",
+      "description": "asd",
       "element": "wind"
     },
     {
-      "id": "ae01d0bd-8a0a-4375-a28a-27719bcc5844",
-      "name": "Aqua hero",
-      "description": "Like Aquaman, but nor from DC",
-      "element": "water"
+      "id": "gLEmxgw",
+      "name": "asd",
+      "description": "asd",
+      "element": "wind"
+    },
+    {
+      "id": "Oqh4u47",
+      "name": "asd",
+      "description": "ad",
+      "element": "earth"
     }
   ],
   "filters": [
