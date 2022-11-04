@@ -11,7 +11,7 @@
 // данных из фильтров
 
 import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {v4 as uuidv4} from "uuid";
 
 import {heroesAddItem} from "../../actions";
@@ -25,6 +25,7 @@ const initialHeroState = {
 
 const HeroesAddForm = () => {
     const dispatch = useDispatch()
+    const {filters} = useSelector(state => state)
 
     const [hero, setHero] = useState(initialHeroState)
 
@@ -45,6 +46,14 @@ const HeroesAddForm = () => {
         })
     }
 
+    const renderOptions = (arr) => {
+        arr = arr.filter(item => item.name !== 'all')
+        return arr.map((item) => {
+                return <option key={item.id} value={item.name}>{item.name}</option>
+        })
+    }
+
+    const options = renderOptions(filters)
     const {name, description, element} = hero
 
     return (
@@ -87,10 +96,7 @@ const HeroesAddForm = () => {
                     value={element}
                     onChange={handleChange}>
                     <option >My element...</option>
-                    <option value="fire">Fire</option>
-                    <option value="water">Water</option>
-                    <option value="wind">Wind</option>
-                    <option value="earth">Earth</option>
+                    {options}
                 </select>
             </div>
 
