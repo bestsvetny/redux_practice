@@ -1,23 +1,33 @@
 import {useHttp} from '../../hooks/http.hook';
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createSelector } from 'reselect'
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 
-import {heroesFetching, heroesFetched, heroesFetchingError, heroDeleted} from '../../actions';
+import {fetchHeroes, heroDeleted} from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
 const HeroesList = () => {
-    const {heroes, heroesLoadingStatus, filter} = useSelector(state => state);
+
+    const filteredHeroesSelector = createSelector(
+        (state) => state.filters.activeFilter,
+        (state) => state.heroes.heroes,
+        (activeFilter, heroes) => {
+            if (activeFilter !== 'all') {
+                return heroes.filter(item => item.element === activeFilter)
+            }
+            else return heroes
+        }
+    )
+
+    const filteredHeroes = useSelector(filteredHeroesSelector)
+    const heroesLoadingStatus = useSelector(state => state.heroes.heroesLoadingStatus)
     const dispatch = useDispatch();
     const {request} = useHttp();
 
     useEffect(() => {
-        dispatch(heroesFetching());
-        request("http://localhost:3001/heroes")
-            .then(data => dispatch(heroesFetched(data)))
-            .catch(() => dispatch(heroesFetchingError()))
-
+        dispatch(fetchHeroes(request))
         // eslint-disable-next-line
     }, []);
 
@@ -35,19 +45,10 @@ const HeroesList = () => {
         return <h5 className="text-center mt-5">Ошибка загрузки</h5>
     }
 
-    const filterHeroesList = (arr) => {
-        if (filter !== 'all') {
-            return arr.filter(item => item.element === filter)
-        }
-        else return arr
-    }
-
     const renderHeroesList = (arr) => {
         if (arr.length === 0) {
             return <h5 className="text-center mt-5">Героев пока нет</h5>
         }
-
-        arr = filterHeroesList(arr)
 
         return(
             <TransitionGroup>
@@ -67,7 +68,7 @@ const HeroesList = () => {
 
     }
 
-    const elements = renderHeroesList(heroes);
+    const elements = renderHeroesList(filteredHeroes);
     return (
         <ul>
             {elements}
