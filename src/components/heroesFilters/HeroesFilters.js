@@ -2,7 +2,8 @@ import {useEffect} from "react";
 import {useHttp} from "../../hooks/http.hook";
 import {useSelector, useDispatch} from "react-redux";
 
-import {fetchFilters, activeFilterChanged} from "../../actions";
+import {fetchFilters} from "../../actions/index";
+import {activeFilterChanged} from './filtersSlice'
 const cn = require('classnames');
 
 const HeroesFilters = () => {
@@ -33,7 +34,7 @@ const HeroesFilters = () => {
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">
-                <p className="card-text">Отфильтруйте героев по элементам</p>
+                <p className="card-text">Filter heroes by element</p>
                 <div className="btn-group">
                     {elements}
                 </div>

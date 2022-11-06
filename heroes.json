@@ -1,21 +1,27 @@
 {
   "heroes": [
     {
-      "id": "cdaf9c34-a3c0-412d-a6dc-1a7cb37569a8",
+      "id": 2,
       "name": "First hero",
       "description": "First in a rating!",
       "element": "fire"
     },
     {
-      "id": "7ElUPSP",
-      "name": "sad",
-      "description": "asd",
+      "id": 3,
+      "name": "as",
+      "description": "as",
+      "element": "water"
+    },
+    {
+      "id": 4,
+      "name": "Unknown hero",
+      "description": "Hidden in the dark",
       "element": "wind"
     },
     {
-      "id": "dPjlMKu",
-      "name": "fds",
-      "description": "sdf",
+      "id": 5,
+      "name": "Aqua hero",
+      "description": "Like Aquaman, but nor from DC",
       "element": "water"
     }
   ],
